@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{.Release.Name}}-worker-pod
+  labels:
+    name: {{.Release.Name}}-worker-pod
+    app: demo-voting-app
+spec:
+  containers:
+    - name: worker-app
+      image: {{.Values.worker.image}}

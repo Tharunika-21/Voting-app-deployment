@@ -1,0 +1,8 @@
+# templates/nginx-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configmap
+data:
+  nginx.conf: |-
+{{ .Files.Get "nginx.conf" | nindent 2 }}

@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: {{.Release.Name}}-worker-app-deploy
+  labels:
+    name: {{.Release.Name}}-worker-app-deploy 
+    app: demo-voting-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: {{.Release.Name}}-worker-app-pod
+      labels:
+        name: {{.Release.Name}}-worker-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: worker-app
+          image: {{.Values.worker.image}}
+  selector:
+    matchLabels:
+      name: {{.Release.Name}}-worker-app-pod
+      app: demo-voting-app
+
